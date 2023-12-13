@@ -11,7 +11,7 @@
 
     <style>
         .operation {
-            border: red solid 2px;
+            border: red solid 6px;
             margin: 4px;
             font-size: 50px;
         }
