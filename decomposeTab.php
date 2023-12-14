@@ -2,7 +2,7 @@
 // Décomposer le 1er paramètre qui est un tableau,
 // et de mettre les éléments pair dans le premier tabl 
 // et les impaire dans le second 
-function decompose($tab, &$pair, &$impaire) {
+function decompose(array $tab, array $pair, array &$impaire): void {
     foreach($tab as $element) {
         if($element % 2 == 0) {
             $pair[] = $element;
