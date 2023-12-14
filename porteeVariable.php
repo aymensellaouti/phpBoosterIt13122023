@@ -14,5 +14,5 @@ affichage();
 
 unset($age);
 
-echo $age;
+// echo $age;
 
