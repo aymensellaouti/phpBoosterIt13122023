@@ -9,7 +9,6 @@
     <title>Table de multiplication</title>
 </head>
 <body>
-    
     <table>
         <!-- 1ére ligne c'est l'entete du tableau -->
         <tr class="jaune">
