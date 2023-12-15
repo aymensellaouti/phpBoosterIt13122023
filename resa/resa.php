@@ -31,8 +31,8 @@
         <input class="form-check-inline" type="checkbox" id="ingredients" name="ingredients[]" value="salade"/>salade
         <input class="form-check-inline" type="checkbox" name="ingredients[]" value="harissa"/>harissa
         <input class="form-check-inline" type="checkbox" name="ingredients[]" value="mayo"/>mayo</br>
-        <label for="fichier">Type du sandwitch</label>
-        <input required id="fichier" name="fichier" type="file" class="form-control">
+        <label for="fichier">Carte Adhérent</label>
+        <input id="fichier" name="adherentCard" type="file" class="form-control">
         <input type="submit" value="commander" class="btn btn-primary">
     </form>
 </div>

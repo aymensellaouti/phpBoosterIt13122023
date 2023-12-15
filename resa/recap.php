@@ -1,20 +1,34 @@
 <?php 
 
-var_dump($GLOBALS);
-die();
-
 // récupérer les données envoyées du formulaire
 $commande = $_POST;
 // les échaper (htmlspecialchars)
-
+// TODO redirection à la page de réservation si informations manquantes
+if (!isset($commande['name']) && !isset($commande['firstname']) && !isset($commande['type']) && !isset($commande['nbSandwitch']) && !isset($commande['ingredients'])) {
+    header('location:resa.php');
+    exit(0);
+}
 $name = htmlspecialchars($commande['name']) ?? '';
 $firstname = htmlspecialchars($commande['firstname'])  ?? '';
 $type = htmlspecialchars($commande['type'])  ?? '';
 $nbSandwitch = htmlspecialchars($commande['nbSandwitch'])  ?? '';
 $ingredients = $commande['ingredients']  ?? [];
 
-// TODO redirection à la page de réservation si informations manquantes
 
+
+// TODO 1- récupérer la carte 
+    // S'il existe 
+    // récupérer : transférer le fichier  + nom unique 
+    $file = $_FILES['adherentCard'];
+    if ($file && $file['size'] > 0) {
+        // générer un nom unique 
+        $newFileName = uniqid().$file['name'];
+        // On définit le chemin du fichier
+        $filePath = "uploads/$newFileName";
+        // on déplace le file envoyé par l'utilisateur vers notre dossier d'uploads 
+        move_uploaded_file($file["tmp_name"], $filePath);
+        $commande['carteAdherent']=$filePath;
+    }
 // On a deux cas pour le calcul
     // 1er quantité < 10 prix total  = 4 *nb 
     // 1éme quantité >= 10 prix total  = 4 *nb + calcule la remise(10%) et on l'affiche  
@@ -63,6 +77,11 @@ $prixTotal = $nbSandwitch * 4;
                     </li>
                     <li class="list-group list-group-item">
                         Prix après Remise: <?=$prixTotal * 0.9 ?>
+                    </li>
+                <?php } ?>
+                <?php if(isset($file)) { ?>
+                    <li class="list-group list-group-item">
+                        <embed src="<?=$filePath ?>" width="100%" height="500" alt="carte adherent">
                     </li>
                 <?php } ?>
             </ol>
