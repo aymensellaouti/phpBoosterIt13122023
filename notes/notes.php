@@ -40,9 +40,24 @@
                         case 'DONE': $bgc = 'success'; break;
                     endswitch;    
                 ?>
-                    <li class="list-group-item list-group-item-<?=$bgc ?>">
-                        <?=$note['name']?> : <?=$note['description']?>
-                    </li>
+                    <div class="card col-md-4 ">
+            <div class="card-header">
+                <?= $note['name'] ?>
+            </div>
+            <div class="card-body <?="bg-$bgc"?>">
+                <h5 class="card-title"><?= $note['status'] ?></h5>
+                <p class="card-text"><?= $note['description'] ?></p>
+                <?php if ($note['status'] != 'DONE') {?>
+                <a href="changeStatus.php?id=<?= $note['id'] ?>&status=DONE" class="btn btn-success">Finalisé</a>
+                <?php } ?>
+                <?php if ($note['status'] != 'INPROGRESS') {?>
+                <a href="changeStatus.php?id=<?= $note['id'] ?>&status=INPROGRESS" class="btn btn-info">En cours</a>
+                <?php } ?>
+                <?php if ($note['status'] != 'TODO') {?>
+                <a href="changeStatus.php?id=<?= $note['id'] ?>&status=TODO" class="btn btn-light">Todo</a>
+                <?php } ?>
+            </div>
+        </div>
                 <?php endforeach ?>
             </ol>
         <?php } ?>
